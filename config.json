@@ -1,0 +1,23 @@
+{
+    "area1": {
+        "left": "50",
+        "right": "200",
+        "up": "100",
+        "down": "170",
+        "threshold": "130"
+    },
+    "area2": {
+        "left": "205",
+        "right": "300",
+        "up": "100",
+        "down": "200",
+        "threshold": "100"
+    },
+    "area3": {
+        "left": "310",
+        "right": "440",
+        "up": "100",
+        "down": "190",
+        "threshold": "100"
+    }
+}
