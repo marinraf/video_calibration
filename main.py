@@ -4,6 +4,7 @@ import cv2
 import json
 import numpy as np
 
+
 def load_config():
     with open('config.json', 'r') as file:
         return json.load(file)
