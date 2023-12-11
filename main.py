@@ -52,8 +52,12 @@ def update_frame():
 
                     # Calculate number of black pixels
                     gray_gaussian_frame = cv2.GaussianBlur(gray_frame, (5, 5), 0)
-                    detected_frame = cv2.threshold(gray_frame, threshold, 225, cv2.THRESH_BINARY_INV)[1]
-                    detected_frame2 = cv2.threshold(gray_frame, threshold, 225, cv2.THRESH_BINARY)[1]
+                    #detected_frame = cv2.threshold(gray_gaussian_frame, threshold, 255, cv2.THRESH_BINARY_INV)[1]
+                    #detected_frame2 = cv2.threshold(gray_gaussian_frame, threshold, 255, cv2.THRESH_BINARY)[1]
+
+                    detected_frame = cv2.adaptiveThreshold(gray_gaussian_frame, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 1001, 20)
+                    detected_frame2 = cv2.adaptiveThreshold(gray_gaussian_frame, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 1001, 20)
+
                     detected_area = cv2.countNonZero(detected_frame)
 
                     result_frame[up:down, left:right] = detected_frame2
@@ -120,7 +124,9 @@ tk.Button(root, text="Save and Exit", command=save_config).grid(row=row + 1, col
 tk.Button(root, text="Exit without Saving", command=exit_app).grid(row=row + 1, column=1)
 
 # Webcam feed
+#cap = cv2.VideoCapture("/dev/video-Cam1")
 cap = cv2.VideoCapture(0)
+
 canvas = tk.Canvas(root, width=640, height=480)
 canvas.grid(row=0, column=3, rowspan=row, padx=10, pady=10)
 
